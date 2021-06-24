@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.UserMapper">
+
+    <insert id="addUser" parameterType="User">
+        insert into ssmbuild.edu_user (user_name, user_username, user_password)
+        values (#{user_name},#{user_username},#{user_password});
+    </insert>
+
+    <select id="getUserByUsername" resultType="User">
+        select * from ssmbuild.edu_user where user_username = #{user_username};
+    </select>
+
+    <update id="updataUser" parameterType="User">
+        update ssmbuild.edu_user set user_name =#{user_name},user_password=#{user_password}
+        where user_username = #{user_username};
+    </update>
+
+    <update id="bindStu">
+        update edu_student set user_username=#{user_username} where stu_id = #{stu_id};
+        update edu_user set stu_id=#{stu_id} where user_username=#{user_username};
+    </update>
+
+</mapper>
